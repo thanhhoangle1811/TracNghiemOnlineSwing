@@ -5,11 +5,11 @@
  */
 package GUI;
 
-import DAO.ConnectionManager;
-import DAO.QuestionDAO;
-import DAO.QuizDAO;
-import DAO.QuizDetailDAO;
-import DAO.alert_messager;
+import DAOT.ConnectionManager;
+import DAOT.QuestionDAO;
+import DAOT.QuizDAO;
+import DAOT.QuizDetailDAO;
+import DAOT.alert_messager;
 import DTO.QuizDetail;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;

@@ -5,9 +5,9 @@
  */
 package GUI;
 
-import DAO.Class_pjDAO;
-import DAO.UserDAO;
-import DAO.alert_messager;
+import DAOT.Class_pjDAO;
+import DAOT.UserDAO;
+import DAOT.alert_messager;
 import DTO.Class_pjDTO;
 import DTO.UserDTO;
 import java.sql.Date;

@@ -5,10 +5,10 @@
  */
 package GUI;
 
-import DAO.ConnectionManager;
-import DAO.ResultDao;
-import DAO.UserInformation;
-import DAO.alert_messager;
+import DAOT.ConnectionManager;
+import DAOT.ResultDao;
+import DAOT.UserInformation;
+import DAOT.alert_messager;
 import DTO.AnswerDto;
 import DTO.Question;
 import DTO.ResultDto;

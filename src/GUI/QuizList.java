@@ -5,10 +5,10 @@
  */
 package GUI;
 
-import DAO.QuizDAO;
-import DAO.QuizListDao;
-import DAO.SubjectDAO;
-import DAO.alert_messager;
+import DAOT.QuizDAO;
+import DAOT.QuizListDao;
+import DAOT.SubjectDAO;
+import DAOT.alert_messager;
 import DTO.QuizListDto;
 import java.sql.ResultSet;
 import java.sql.SQLException;

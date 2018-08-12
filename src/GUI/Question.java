@@ -5,10 +5,10 @@
  */
 package GUI;
 
-import DAO.QuestionDAO;
-import DAO.SubjectDAO;
-import DAO.UserInformation;
-import DAO.alert_messager;
+import DAOT.QuestionDAO;
+import DAOT.SubjectDAO;
+import DAOT.UserInformation;
+import DAOT.alert_messager;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.io.File;
 import java.io.FileInputStream;

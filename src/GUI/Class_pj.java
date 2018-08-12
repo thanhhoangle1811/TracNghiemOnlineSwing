@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import DAO.Class_pjDAO;
-import DAO.alert_messager;
+import DAOT.Class_pjDAO;
+import DAOT.alert_messager;
 import DTO.Class_pjDTO;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;

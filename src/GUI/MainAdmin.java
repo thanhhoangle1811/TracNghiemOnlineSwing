@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import DAO.UserInformation;
+import DAOT.UserInformation;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Calendar;

@@ -9,10 +9,10 @@ package GUI;
  *
  * @author Administrator
  */
-import DAO.SubjectDAO;
-import DAO.ThamGiaDAO;
-import DAO.UserInformation;
-import DAO.alert_messager;
+import DAOT.SubjectDAO;
+import DAOT.ThamGiaDAO;
+import DAOT.UserInformation;
+import DAOT.alert_messager;
 import DTO.SubjectDTO;
 import DTO.ThamGiaDTO;
 import java.sql.ResultSet;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package DAOT;
 
 import DTO.ThamGiaDTO;
 import java.sql.CallableStatement;

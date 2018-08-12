@@ -5,9 +5,9 @@
  */
 package GUI;
 
-import DAO.ConnectionManager;
-import DAO.UserInformation;
-import DAO.alert_messager;
+import DAOT.ConnectionManager;
+import DAOT.UserInformation;
+import DAOT.alert_messager;
 import DTO.Authentication;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;

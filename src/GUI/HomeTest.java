@@ -5,11 +5,11 @@
  */
 package GUI;
 
-import DAO.ConnectionManager;
-import DAO.QuizDAO;
-import DAO.SubjectDAO;
-import DAO.UserInformation;
-import DAO.alert_messager;
+import DAOT.ConnectionManager;
+import DAOT.QuizDAO;
+import DAOT.SubjectDAO;
+import DAOT.UserInformation;
+import DAOT.alert_messager;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -112,7 +112,7 @@ public class HomeTest extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Welcom to System Quiz of Aptech");
+        jLabel4.setText("Welcom to System Quiz of CNC Aptech");
 
         lbName.setText("jLabel1");
 

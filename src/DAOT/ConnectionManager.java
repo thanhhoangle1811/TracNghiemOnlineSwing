@@ -1,4 +1,4 @@
-package DAO;
+package DAOT;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +21,8 @@ public class ConnectionManager {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String user = "sa";
             String password = "123456";
-            Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QLTTNSON", user, password);
+            Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QLTTN", user, password);
+            System.out.println("Connect success");
             return conn;
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,6 +31,7 @@ public class ConnectionManager {
     }
      public static void main (String [] agrs){
         System.out.println(ConnectionManager.getConnection());
+         System.out.println("ABC");
     }
  
 }

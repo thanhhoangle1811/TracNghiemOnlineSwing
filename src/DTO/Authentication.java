@@ -5,7 +5,7 @@
  */
 package DTO;
 
-import DAO.UserDAO;
+import DAOT.UserDAO;
 import java.security.MessageDigest;
 
 /**
