@@ -1,10 +1,12 @@
 package entities;
 // Generated Aug 12, 2018 6:18:05 PM by Hibernate Tools 5.2.0.Beta1
 
+import java.util.ArrayList;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -40,9 +42,9 @@ public class TaiKhoan implements java.io.Serializable {
 	private String pass;
 	private String quyen;
 	private Integer trangthai;
-	private Set<MonHoc> monHocs = new HashSet<MonHoc>(0);
-	private Set<KetQua> ketQuas = new HashSet<KetQua>(0);
-	private Set<CauHoi> cauHois = new HashSet<CauHoi>(0);
+	private List<MonHoc> monHocs = new ArrayList<MonHoc>(0);
+	private List<KetQua> ketQuas = new ArrayList<KetQua>(0);
+	private List<CauHoi> cauHois = new ArrayList<CauHoi>(0);
 
 	public TaiKhoan() {
 	}
@@ -55,7 +57,7 @@ public class TaiKhoan implements java.io.Serializable {
 
 	public TaiKhoan(LopHoc lopHoc, String hoten, Date ngaysinh, String diachi, Integer namhoc, String sdt,
 			String email, String username, String pass, String quyen, Integer trangthai,
-			Set<MonHoc> monHocs, Set<KetQua> ketQuas, Set<CauHoi> cauHois) {
+			List<MonHoc> monHocs, List<KetQua> ketQuas, List<CauHoi> cauHois) {
 		this.lopHoc = lopHoc;
 		this.hoten = hoten;
 		this.ngaysinh = ngaysinh;
@@ -189,29 +191,29 @@ public class TaiKhoan implements java.io.Serializable {
 	@JoinTable(name = "Thamgia", schema = "dbo", catalog = "QLTTN", joinColumns = {
 			@JoinColumn(name = "matk", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "mamonhoc", nullable = false, updatable = false) })
-	public Set<MonHoc> getMonHocs() {
+	public List<MonHoc> getMonHocs() {
 		return this.monHocs;
 	}
 
-	public void setMonHocs(Set<MonHoc> monHocs) {
+	public void setMonHocs(List<MonHoc> monHocs) {
 		this.monHocs = monHocs;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taiKhoan")
-	public Set<KetQua> getKetQuas() {
+	public List<KetQua> getKetQuas() {
 		return this.ketQuas;
 	}
 
-	public void setKetQuas(Set<KetQua> ketQuas) {
+	public void setKetQuas(List<KetQua> ketQuas) {
 		this.ketQuas = ketQuas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taiKhoan")
-	public Set<CauHoi> getCauHois() {
+	public List<CauHoi> getCauHois() {
 		return this.cauHois;
 	}
 
-	public void setCauHois(Set<CauHoi> cauHois) {
+	public void setCauHois(List<CauHoi> cauHois) {
 		this.cauHois = cauHois;
 	}
 

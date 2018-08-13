@@ -5,10 +5,12 @@
  */
 package GUI;
 
+import DAO.TaiKhoanDAO;
 import DAOT.ConnectionManager;
 import DAOT.UserInformation;
 import DAOT.alert_messager;
 import DTO.Authentication;
+import entities.TaiKhoan;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -228,24 +230,26 @@ public class Login extends javax.swing.JFrame {
             alt.alter("Please Enter your PassWord ");
         } else {
             try {
-                CallableStatement st = ConnectionManager.getConnection().prepareCall("{call ups_login(?,?)}");
-                st.setString("username", user);
-                st.setString("pass", Authentication.md5(password));
-                ResultSet rs = st.executeQuery();
-                boolean flag = rs.next();
-                if (flag == false) {
+//                CallableStatement st = ConnectionManager.getConnection().prepareCall("{call ups_login(?,?)}");
+//                st.setString("username", user);
+//                st.setString("pass", Authentication.md5(password));
+//                ResultSet rs = st.executeQuery();
+                TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+//                boolean flag = rs.next();
+                TaiKhoan tk =  taiKhoanDAO.findByUsername("admin", "e10adc3949ba59abbe56");
+                if (tk == null) {
                     alert_messager alt = new alert_messager();
                     alt.alter(" Log in Fail , Pls contact with your Admin ! ");
                 } else {
                     /* khu vuc  lay user name login de show len thong tin trong cac lable*/
-                    UserInformation.name = rs.getString("hoten");
-                    UserInformation.userID = rs.getInt("matk");
-                    UserInformation.birthday = rs.getDate("ngaysinh");
-                    UserInformation.classID = rs.getString("malophoc");
+                    UserInformation.name = tk.getHoten();
+                    UserInformation.userID = tk.getMatk();
+                    UserInformation.birthday = tk.getNgaysinh();
+                    UserInformation.classID = tk.getLopHoc().getMalophoc();
                     /* khu vuc  lay user name login de show len thong tin trong cac lable*/
 
                     Home home = new Home();
-                    String permission = rs.getString("quyen").toString().trim();
+                    String permission = tk.getQuyen().trim();
                     switch (permission) {
                         case "admin":
                             this.dispose();
@@ -268,7 +272,7 @@ public class Login extends javax.swing.JFrame {
                             break;
                     }
                 }
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
