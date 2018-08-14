@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import DAO.MonHocDAO;
 import DAOT.ConnectionManager;
 import DAOT.QuizDAO;
 import DAOT.SubjectDAO;
@@ -13,6 +14,7 @@ import DAOT.alert_messager;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -32,11 +34,11 @@ public class HomeTest extends javax.swing.JFrame {
     public static int thoiGianThi;
     public static String maDe;
     alert_messager alt = new alert_messager();
-
+    private MonHocDAO monHocDAO = new MonHocDAO();
     public HomeTest() {
         initComponents();
         setUserInform();
-        SubjectDAO.setSubjectCombox(cbMonHoc, SubjectDAO.getArraySubject());
+        SubjectDAO.setSubjectCombox(cbMonHoc,monHocDAO.getListTenMonHoc());
         monHoc = cbMonHoc.getItemAt(0).trim();
     }
 
@@ -112,7 +114,7 @@ public class HomeTest extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Welcom to System Quiz of CNC Aptech");
+        jLabel4.setText("Welcom to System Quiz of Aptech");
 
         lbName.setText("jLabel1");
 
@@ -152,7 +154,7 @@ public class HomeTest extends javax.swing.JFrame {
                         .addComponent(lbDate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbTime)
-                        .addGap(0, 21, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
 
@@ -174,11 +176,9 @@ public class HomeTest extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 250, 249));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("ID :");
 
-        lbuserID.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbuserID.setForeground(new java.awt.Color(255, 51, 0));
         lbuserID.setText("0");
 
@@ -190,7 +190,7 @@ public class HomeTest extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(50, 50, 50)
-                .addComponent(lbuserID, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(lbuserID, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -205,11 +205,9 @@ public class HomeTest extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 250, 249));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Name :");
 
-        lbname.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbname.setForeground(new java.awt.Color(255, 51, 0));
         lbname.setText("0");
 
@@ -221,7 +219,7 @@ public class HomeTest extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
-                .addComponent(lbname, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(lbname, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -236,11 +234,9 @@ public class HomeTest extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(255, 250, 249));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("BirthDay:");
 
-        lbbirthday.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbbirthday.setForeground(new java.awt.Color(255, 51, 0));
         lbbirthday.setText("0");
 
@@ -267,11 +263,9 @@ public class HomeTest extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(255, 250, 249));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Class:");
 
-        lbClass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbClass.setForeground(new java.awt.Color(255, 51, 0));
         lbClass.setText("0");
 
@@ -283,7 +277,7 @@ public class HomeTest extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
-                .addComponent(lbClass, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addComponent(lbClass, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -328,7 +322,6 @@ public class HomeTest extends javax.swing.JFrame {
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel11, jPanel13, jPanel7, jPanel8});
 
-        cbMonHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cbMonHoc.setForeground(new java.awt.Color(51, 51, 51));
         cbMonHoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--select--" }));
         cbMonHoc.setMaximumSize(new java.awt.Dimension(222, 42));
@@ -340,7 +333,6 @@ public class HomeTest extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Subject ");
 
@@ -406,11 +398,9 @@ public class HomeTest extends javax.swing.JFrame {
         jPanel9.setMinimumSize(new java.awt.Dimension(222, 42));
         jPanel9.setPreferredSize(new java.awt.Dimension(222, 42));
 
-        lbquizID.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbquizID.setForeground(new java.awt.Color(255, 51, 0));
         lbquizID.setText("0");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Quiz ID:");
 
@@ -440,11 +430,9 @@ public class HomeTest extends javax.swing.JFrame {
         jPanel10.setMinimumSize(new java.awt.Dimension(222, 42));
         jPanel10.setPreferredSize(new java.awt.Dimension(222, 42));
 
-        lbTotalQues.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbTotalQues.setForeground(new java.awt.Color(255, 51, 0));
         lbTotalQues.setText("0");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Total Ques :");
 
@@ -457,7 +445,7 @@ public class HomeTest extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addComponent(lbTotalQues)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,11 +464,9 @@ public class HomeTest extends javax.swing.JFrame {
         jPanel14.setMinimumSize(new java.awt.Dimension(222, 42));
         jPanel14.setPreferredSize(new java.awt.Dimension(222, 42));
 
-        lbTotalMark.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbTotalMark.setForeground(new java.awt.Color(255, 51, 0));
         lbTotalMark.setText("0");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
         jLabel11.setText("Total Mark :");
 
@@ -493,7 +479,7 @@ public class HomeTest extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
                 .addComponent(lbTotalMark)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,11 +496,9 @@ public class HomeTest extends javax.swing.JFrame {
         jPanel15.setMinimumSize(new java.awt.Dimension(222, 42));
         jPanel15.setPreferredSize(new java.awt.Dimension(222, 42));
 
-        lbExamTime.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbExamTime.setForeground(new java.awt.Color(255, 51, 0));
         lbExamTime.setText("0");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Exam Time :");
 
@@ -612,7 +596,7 @@ public class HomeTest extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOk)
                     .addComponent(btnCancel))

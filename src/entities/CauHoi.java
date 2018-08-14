@@ -1,8 +1,8 @@
 package entities;
 // Generated Aug 12, 2018 6:18:05 PM by Hibernate Tools 5.2.0.Beta1
 
-import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,15 +26,15 @@ public class CauHoi implements java.io.Serializable {
 	private Integer macauhoi;
 	private MonHoc monHoc;
 	private TaiKhoan taiKhoan;
-	private Serializable ndcauhoi;
+	private String ndcauhoi;
 	private Integer dokho;
-	private Serializable phuonganA;
-	private Serializable phuonganB;
-	private Serializable phuonganC;
-	private Serializable phuonganD;
+	private String phuonganA;
+	private String phuonganB;
+	private String phuonganC;
+	private String phuonganD;
 	private Character dapan;
 	private int trangthai;
-	private Set<DeThi> deThis = new HashSet<DeThi>(0);
+	private List<DeThi> deThis = new ArrayList<DeThi>(0);
 
 	public CauHoi() {
 	}
@@ -45,9 +45,9 @@ public class CauHoi implements java.io.Serializable {
 		this.trangthai = trangthai;
 	}
 
-	public CauHoi(MonHoc monHoc, TaiKhoan taiKhoan, Serializable ndcauhoi, Integer dokho, Serializable phuonganA,
-			Serializable phuonganB, Serializable phuonganC, Serializable phuonganD, Character dapan, int trangthai,
-			Set<DeThi> deThis) {
+	public CauHoi(MonHoc monHoc, TaiKhoan taiKhoan, String ndcauhoi, Integer dokho, String phuonganA,
+			String phuonganB, String phuonganC, String phuonganD, Character dapan, int trangthai,
+			List<DeThi> deThis) {
 		this.monHoc = monHoc;
 		this.taiKhoan = taiKhoan;
 		this.ndcauhoi = ndcauhoi;
@@ -94,11 +94,11 @@ public class CauHoi implements java.io.Serializable {
 	}
 
 	@Column(name = "ndcauhoi")
-	public Serializable getNdcauhoi() {
+	public String getNdcauhoi() {
 		return this.ndcauhoi;
 	}
 
-	public void setNdcauhoi(Serializable ndcauhoi) {
+	public void setNdcauhoi(String ndcauhoi) {
 		this.ndcauhoi = ndcauhoi;
 	}
 
@@ -112,38 +112,38 @@ public class CauHoi implements java.io.Serializable {
 	}
 
 	@Column(name = "phuonganA")
-	public Serializable getPhuonganA() {
+	public String getPhuonganA() {
 		return this.phuonganA;
 	}
 
-	public void setPhuonganA(Serializable phuonganA) {
+	public void setPhuonganA(String phuonganA) {
 		this.phuonganA = phuonganA;
 	}
 
 	@Column(name = "phuonganB")
-	public Serializable getPhuonganB() {
+	public String getPhuonganB() {
 		return this.phuonganB;
 	}
 
-	public void setPhuonganB(Serializable phuonganB) {
+	public void setPhuonganB(String phuonganB) {
 		this.phuonganB = phuonganB;
 	}
 
 	@Column(name = "phuonganC")
-	public Serializable getPhuonganC() {
+	public String getPhuonganC() {
 		return this.phuonganC;
 	}
 
-	public void setPhuonganC(Serializable phuonganC) {
+	public void setPhuonganC(String phuonganC) {
 		this.phuonganC = phuonganC;
 	}
 
 	@Column(name = "phuonganD")
-	public Serializable getPhuonganD() {
+	public String getPhuonganD() {
 		return this.phuonganD;
 	}
 
-	public void setPhuonganD(Serializable phuonganD) {
+	public void setPhuonganD(String phuonganD) {
 		this.phuonganD = phuonganD;
 	}
 
@@ -169,11 +169,11 @@ public class CauHoi implements java.io.Serializable {
 	@JoinTable(name = "CTDeThi", schema = "dbo", catalog = "QLTTN", joinColumns = {
 			@JoinColumn(name = "macauhoi", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "madethi", nullable = false, updatable = false) })
-	public Set<DeThi> getDeThis() {
+	public List<DeThi> getDeThis() {
 		return this.deThis;
 	}
 
-	public void setDeThis(Set<DeThi> deThis) {
+	public void setDeThis(List<DeThi> deThis) {
 		this.deThis = deThis;
 	}
 

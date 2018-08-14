@@ -5,11 +5,13 @@
  */
 package GUI;
 
+import DAO.MonHocDAO;
 import DAOT.QuestionDAO;
 import DAOT.SubjectDAO;
 import DAOT.UserInformation;
 import DAOT.alert_messager;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import entities.MonHoc;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,6 +42,7 @@ public class Question extends javax.swing.JInternalFrame {
     private DefaultTableModel model = null;
     private int selectedRow = -1;
     alert_messager alt = new alert_messager();
+    private MonHocDAO monHocDAO = new MonHocDAO();
 
     public Question() {
         initComponents();
@@ -69,16 +72,9 @@ public class Question extends javax.swing.JInternalFrame {
     // load data to combox
     private void LoadSubjectToCBO() {
 
-        SubjectDAO dao = new SubjectDAO();
-        ResultSet rs = dao.loadData();
-        try {
-            while (rs.next()) {
-                cbsuject.addItem(rs.getString("tenmonhoc"));
-            }
-            rs.close();
-
-        } catch (Exception e) {
-            System.out.println("GUI.GiaoVien.Question.LoadSubjectToCBO() : " + e.getMessage());
+        List<MonHoc> monHocs = monHocDAO.getAll();
+        for (MonHoc monHoc : monHocs) {
+         cbsuject.addItem(monHoc.getTenmonhoc());
         }
     }
 

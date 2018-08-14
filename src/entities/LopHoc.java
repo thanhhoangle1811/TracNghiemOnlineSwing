@@ -1,8 +1,10 @@
 package entities;
 // Generated Aug 12, 2018 6:18:05 PM by Hibernate Tools 5.2.0.Beta1
 
-import java.io.Serializable;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,9 +21,9 @@ import javax.persistence.Table;
 public class LopHoc implements java.io.Serializable {
 
 	private String malophoc;
-	private Serializable tenlop;
+	private String tenlop;
 	private Integer trangthai;
-	private Set<TaiKhoan> taiKhoans = new HashSet<TaiKhoan>(0);
+	private List<TaiKhoan> taiKhoans = new ArrayList<TaiKhoan>();
 
 	public LopHoc() {
 	}
@@ -30,7 +32,7 @@ public class LopHoc implements java.io.Serializable {
 		this.malophoc = malophoc;
 	}
 
-	public LopHoc(String malophoc, Serializable tenlop, Integer trangthai, Set<TaiKhoan> taiKhoans) {
+	public LopHoc(String malophoc, String tenlop, Integer trangthai, List<TaiKhoan> taiKhoans) {
 		this.malophoc = malophoc;
 		this.tenlop = tenlop;
 		this.trangthai = trangthai;
@@ -49,11 +51,11 @@ public class LopHoc implements java.io.Serializable {
 	}
 
 	@Column(name = "tenlop")
-	public Serializable getTenlop() {
+	public String getTenlop() {
 		return this.tenlop;
 	}
 
-	public void setTenlop(Serializable tenlop) {
+	public void setTenlop(String tenlop) {
 		this.tenlop = tenlop;
 	}
 
@@ -67,11 +69,11 @@ public class LopHoc implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lopHoc")
-	public Set<TaiKhoan> getTaiKhoans() {
+	public List<TaiKhoan> getTaiKhoans() {
 		return this.taiKhoans;
 	}
 
-	public void setTaiKhoans(Set<TaiKhoan> taiKhoans) {
+	public void setTaiKhoans(List<TaiKhoan> taiKhoans) {
 		this.taiKhoans = taiKhoans;
 	}
 

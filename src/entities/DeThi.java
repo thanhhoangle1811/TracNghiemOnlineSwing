@@ -1,7 +1,9 @@
 package entities;
 // Generated Aug 12, 2018 6:18:05 PM by Hibernate Tools 5.2.0.Beta1
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +30,8 @@ public class DeThi implements java.io.Serializable {
 	private Long tongdiem;
 	private Integer thoigianthi;
 	private int trangthai;
-	private Set<CauHoi> cauHois = new HashSet<CauHoi>(0);
-	private Set<KetQua> ketQuas = new HashSet<KetQua>(0);
+	private List<CauHoi> cauHois = new ArrayList<CauHoi>();
+	private List<KetQua> ketQuas = new ArrayList<KetQua>();
 
 	public DeThi() {
 	}
@@ -40,7 +42,7 @@ public class DeThi implements java.io.Serializable {
 	}
 
 	public DeThi(String mamonhoc, Integer socaudokho1, Integer socaudokho2, Integer socaudokho3, Long tongdiem,
-			Integer thoigianthi, int trangthai, Set<CauHoi> cauHois, Set<KetQua> ketQuas) {
+			Integer thoigianthi, int trangthai, List<CauHoi> cauHois, List<KetQua> ketQuas) {
 		this.mamonhoc = mamonhoc;
 		this.socaudokho1 = socaudokho1;
 		this.socaudokho2 = socaudokho2;
@@ -128,20 +130,20 @@ public class DeThi implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "deThis")
-	public Set<CauHoi> getCauHois() {
+	public List<CauHoi> getCauHois() {
 		return this.cauHois;
 	}
 
-	public void setCauHois(Set<CauHoi> cauHois) {
+	public void setCauHois(List<CauHoi> cauHois) {
 		this.cauHois = cauHois;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "deThi")
-	public Set<KetQua> getKetQuas() {
+	public List<KetQua> getKetQuas() {
 		return this.ketQuas;
 	}
 
-	public void setKetQuas(Set<KetQua> ketQuas) {
+	public void setKetQuas(List<KetQua> ketQuas) {
 		this.ketQuas = ketQuas;
 	}
 

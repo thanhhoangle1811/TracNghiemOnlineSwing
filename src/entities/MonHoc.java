@@ -1,8 +1,10 @@
 package entities;
 // Generated Aug 12, 2018 6:18:05 PM by Hibernate Tools 5.2.0.Beta1
 
-import java.io.Serializable;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,11 +22,11 @@ import javax.persistence.Table;
 public class MonHoc implements java.io.Serializable {
 
 	private String mamonhoc;
-	private Serializable tenmonhoc;
+	private String tenmonhoc;
 	private Integer sotinchi;
 	private Integer trangthai;
-	private Set<CauHoi> cauHois = new HashSet<CauHoi>(0);
-	private Set<TaiKhoan> taiKhoans = new HashSet<TaiKhoan>(0);
+	private List<CauHoi> cauHois = new ArrayList<CauHoi>();
+	private List<TaiKhoan> taiKhoans = new ArrayList<TaiKhoan>();
 
 	public MonHoc() {
 	}
@@ -33,8 +35,8 @@ public class MonHoc implements java.io.Serializable {
 		this.mamonhoc = mamonhoc;
 	}
 
-	public MonHoc(String mamonhoc, Serializable tenmonhoc, Integer sotinchi, Integer trangthai, Set<CauHoi> cauHois,
-			Set<TaiKhoan> taiKhoans) {
+	public MonHoc(String mamonhoc, String tenmonhoc, Integer sotinchi, Integer trangthai, List<CauHoi> cauHois,
+			List<TaiKhoan> taiKhoans) {
 		this.mamonhoc = mamonhoc;
 		this.tenmonhoc = tenmonhoc;
 		this.sotinchi = sotinchi;
@@ -55,11 +57,11 @@ public class MonHoc implements java.io.Serializable {
 	}
 
 	@Column(name = "tenmonhoc")
-	public Serializable getTenmonhoc() {
+	public String getTenmonhoc() {
 		return this.tenmonhoc;
 	}
 
-	public void setTenmonhoc(Serializable tenmonhoc) {
+	public void setTenmonhoc(String tenmonhoc) {
 		this.tenmonhoc = tenmonhoc;
 	}
 
@@ -82,20 +84,20 @@ public class MonHoc implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "monHoc")
-	public Set<CauHoi> getCauHois() {
+	public List<CauHoi> getCauHois() {
 		return this.cauHois;
 	}
 
-	public void setCauHois(Set<CauHoi> cauHois) {
+	public void setCauHois(List<CauHoi> cauHois) {
 		this.cauHois = cauHois;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "monHocs")
-	public Set<TaiKhoan> getTaiKhoans() {
+	public List<TaiKhoan> getTaiKhoans() {
 		return this.taiKhoans;
 	}
 
-	public void setTaiKhoans(Set<TaiKhoan> taiKhoans) {
+	public void setTaiKhoans(List<TaiKhoan> taiKhoans) {
 		this.taiKhoans = taiKhoans;
 	}
 

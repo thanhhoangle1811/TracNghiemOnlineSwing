@@ -236,7 +236,7 @@ public class Login extends javax.swing.JFrame {
 //                ResultSet rs = st.executeQuery();
                 TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
 //                boolean flag = rs.next();
-                TaiKhoan tk =  taiKhoanDAO.findByUsername("admin", "e10adc3949ba59abbe56");
+                TaiKhoan tk =  taiKhoanDAO.findByUsername(user, password);
                 if (tk == null) {
                     alert_messager alt = new alert_messager();
                     alt.alter(" Log in Fail , Pls contact with your Admin ! ");

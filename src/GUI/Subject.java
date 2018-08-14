@@ -9,13 +9,16 @@ package GUI;
  *
  * @author Administrator
  */
+import DAO.MonHocDAO;
 import DAOT.SubjectDAO;
 import DAOT.ThamGiaDAO;
 import DAOT.UserInformation;
 import DAOT.alert_messager;
 import DTO.SubjectDTO;
 import DTO.ThamGiaDTO;
+import entities.MonHoc;
 import java.sql.ResultSet;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +36,7 @@ public class Subject extends javax.swing.JInternalFrame {
     alert_messager alt = new alert_messager();// toan cuc
     SubjectDAO subjectdao = new SubjectDAO();//toan cuc
     ThamGiaDAO thamgiadao = new ThamGiaDAO();//toan cuc
+    private MonHocDAO monHocDAO = new MonHocDAO();
 
     public Subject() {
         initComponents();
@@ -363,8 +367,10 @@ public class Subject extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 System.out.println(" Parse Int Cridit : " + e.getMessage());
             }
-
-            SubjectDTO subjectdto = new SubjectDTO(mamon, tenmon, credit);
+            MonHoc monHoc = new MonHoc();
+            monHoc.setMamonhoc(mamon);
+            monHoc.setTenmonhoc(tenmon);
+            monHoc.setSotinchi(credit);
             if (mamon.isEmpty()) {
                 alt.alter("You haven't yet input Subject ID");
             } else {
@@ -374,8 +380,7 @@ public class Subject extends javax.swing.JInternalFrame {
                     if (tenmon.isEmpty()) {
                         alt.alter("you haven't yet input Subject Name");
                     } else {
-                        boolean isAddSubject = this.subjectdao.insertSubject(subjectdto);
-                        if (isAddSubject) {
+                        if (monHocDAO.saveOrUpdate(monHoc)) {
                             alt.alter("Add Success");
                             loaddataSubject();
                             refreshSubject();
@@ -507,18 +512,12 @@ public class Subject extends javax.swing.JInternalFrame {
 
     public void loaddataSubject() {
         model = new DefaultTableModel(null, new Object[]{"Subject ID", "Subject Name", "Credits"});
-        SubjectDAO dao = new SubjectDAO();
-        ResultSet rs = dao.loadData();
-        try {
-
-            while (rs.next()) {
-                model.addRow(new Object[]{rs.getString("mamonhoc"), rs.getString("tenmonhoc"), rs.getInt("sotinchi")});
-            }
-            tblsubject.setModel(model);
-            rs.close();
-        } catch (Exception e) {
-            System.out.println("GUI.QuanLyTaiKhoan.Subject.loaddataSubject(): " + e.getMessage());
+        List<MonHoc> monHocs = monHocDAO.getAll();
+        for (MonHoc monHoc : monHocs) {
+            model.addRow(new Object[]{monHoc.getMamonhoc(), monHoc.getTenmonhoc(), monHoc.getSotinchi()});
         }
+        tblsubject.setModel(model);
+
     }
 
     public void loadDaTaThamGia() {

@@ -5,14 +5,17 @@
  */
 package GUI;
 
+import DAO.MonHocDAO;
 import DAOT.QuizDAO;
 import DAOT.QuizListDao;
 import DAOT.SubjectDAO;
 import DAOT.alert_messager;
 import DTO.QuizListDto;
+import entities.MonHoc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -26,8 +29,10 @@ public class QuizList extends javax.swing.JInternalFrame {
     /**
      * Creates new form QuizList
      */
+    
     DefaultTableModel model = null;
     private int selectedRow = -1;
+    private MonHocDAO monHocDAO = new MonHocDAO();
     alert_messager alt = new alert_messager();// toan cuc
 
     public QuizList() {
@@ -330,17 +335,10 @@ public class QuizList extends javax.swing.JInternalFrame {
     }
 
     public void loadSubjectIDToCBO() {
-        SubjectDAO dao = new SubjectDAO();
-        ResultSet rs = dao.loadData();
-        try {
-            while (rs.next()) {
-                jcoMonHoc.addItem(rs.getString("tenmonhoc"));
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(QuizList.class.getName()).log(Level.SEVERE, null, ex);
+        List<MonHoc>  monHocs =  monHocDAO.getAll();
+        for (MonHoc monHoc : monHocs) {
+            jcoMonHoc.addItem(monHoc.getTenmonhoc());
         }
-
     }
 
     public void loadQuiz() {
